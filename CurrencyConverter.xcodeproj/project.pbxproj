@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6867CAD71D3690BD0069A130 /* ExchangeRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6867CAD61D3690BD0069A130 /* ExchangeRate.m */; };
+		6867CADA1D3691900069A130 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 6867CAD91D3691900069A130 /* Currency.m */; };
 		68C756951D356A660039A87E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C756941D356A660039A87E /* main.m */; };
 		68C756981D356A660039A87E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C756971D356A660039A87E /* AppDelegate.m */; };
 		68C7569B1D356A660039A87E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7569A1D356A660039A87E /* ViewController.m */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6867CAD51D3690BD0069A130 /* ExchangeRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeRate.h; sourceTree = "<group>"; };
+		6867CAD61D3690BD0069A130 /* ExchangeRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeRate.m; sourceTree = "<group>"; };
+		6867CAD81D3691900069A130 /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
+		6867CAD91D3691900069A130 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		68C756901D356A660039A87E /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C756941D356A660039A87E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		68C756961D356A660039A87E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,6 +69,10 @@
 				68C756991D356A660039A87E /* ViewController.h */,
 				68C7569A1D356A660039A87E /* ViewController.m */,
 				68C7569C1D356A660039A87E /* Main.storyboard */,
+				6867CAD51D3690BD0069A130 /* ExchangeRate.h */,
+				6867CAD61D3690BD0069A130 /* ExchangeRate.m */,
+				6867CAD81D3691900069A130 /* Currency.h */,
+				6867CAD91D3691900069A130 /* Currency.m */,
 				68C7569F1D356A660039A87E /* Assets.xcassets */,
 				68C756A11D356A660039A87E /* LaunchScreen.storyboard */,
 				68C756A41D356A660039A87E /* Info.plist */,
@@ -149,9 +159,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6867CAD71D3690BD0069A130 /* ExchangeRate.m in Sources */,
 				68C7569B1D356A660039A87E /* ViewController.m in Sources */,
 				68C756981D356A660039A87E /* AppDelegate.m in Sources */,
 				68C756951D356A660039A87E /* main.m in Sources */,
+				6867CADA1D3691900069A130 /* Currency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +312,7 @@
 				68C756A91D356A660039A87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

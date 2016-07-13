@@ -10,6 +10,11 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *homeCurrency;
+
+@property (weak, nonatomic) IBOutlet UITextField *foreignCurrency;
+
+- (IBAction)convertButton:(id)sender;
 
 @end
 
