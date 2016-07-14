@@ -48,7 +48,7 @@
 														NSString* tmp = (NSString*)[dictRate objectForKey:@"Rate"];
 														self.rate = @(tmp.floatValue);
 														//NSLog(@"%@", [dict objectForKey:@"results"]);
-														NSLog(@"%@", tmp);
+														NSLog(@"%@", dict);
 													}else{
 														NSLog(@"Not a dictionary.");
 														exit(1);
