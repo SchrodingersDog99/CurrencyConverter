@@ -48,7 +48,7 @@
 														NSString* tmp = (NSString*)[dictRate objectForKey:@"Rate"];
 														self.rate = @(tmp.floatValue);
 														//NSLog(@"%@", [dict objectForKey:@"results"]);
-														NSLog(@"%@", dict);
+														NSLog(@"%@", tmp);
 													}else{
 														NSLog(@"Not a dictionary.");
 														exit(1);
@@ -61,11 +61,11 @@
 }
 
 -(NSString*) exchangeToHome: (NSNumber*) value {
-	return [self.home format: @(value.floatValue * self.rate.floatValue)];
+	return [self.home format: @(value.floatValue / self.rate.floatValue)];
 }
 
 -(NSString*) exchangeToForeign: (NSNumber*) value {
-	return [self.foreign format: @(value.floatValue / self.rate.floatValue)];
+	return [self.foreign format: @(value.floatValue * self.rate.floatValue)];
 }
 
 -(void) reverse {

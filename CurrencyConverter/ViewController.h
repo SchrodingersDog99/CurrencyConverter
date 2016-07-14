@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *foreignPickerView;
 
 - (IBAction)convertButton:(id)sender;
+- (IBAction)switchButton:(id)sender;
 
 @end
 

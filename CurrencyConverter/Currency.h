@@ -22,4 +22,5 @@
 
 -(NSString*) format: (NSNumber*) quantity;
 
++(NSMutableArray*) createCurrency;
 @end

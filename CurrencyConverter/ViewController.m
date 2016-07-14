@@ -18,53 +18,26 @@
 @synthesize listOfCurrency;
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	Currency* usdCurrency = [[Currency alloc] initWithName:@"United States Dollar" alphaCode:@"USD" symbol:@"$" decimalPlaces:@(2)];
-	Currency* cnyCurrency = [[Currency alloc] initWithName:@"Chinese Yuan" alphaCode:@"CNY" symbol:@"¥" decimalPlaces:@(2)];
-	Currency* eurCurrency = [[Currency alloc] initWithName:@"Euro" alphaCode:@"EUR" symbol:@"€" decimalPlaces:@(2)];
-	Currency* jpyCurrency = [[Currency alloc] initWithName:@"Japanese Yen" alphaCode:@"JPY" symbol:@"¥" decimalPlaces:@(0)];
-	Currency* gbpCurrency = [[Currency alloc] initWithName:@"Pound Sterling" alphaCode:@"GBP" symbol:@"£" decimalPlaces:@(2)];
-	
-	listOfCurrency = [[NSMutableArray alloc] init];
-	[listOfCurrency addObject:cnyCurrency];
-	[listOfCurrency addObject:usdCurrency];
-	[listOfCurrency addObject:eurCurrency];
-	[listOfCurrency addObject:jpyCurrency];
-	[listOfCurrency addObject:gbpCurrency];
 	
 	// Do any additional setup after loading the view, typically from a nib.
-/*	listOfRates = [[NSMutableArray alloc] init];
-	//[listOfRates addObject:[[ExchangeRate alloc] initWithHome:cnyCurrency foreign:cnyCurrency]];
-	[listOfRates addObject:[[ExchangeRate alloc] initWithHome:cnyCurrency foreign:usdCurrency]];
-	[listOfRates addObject:[[ExchangeRate alloc] initWithHome:cnyCurrency foreign:eurCurrency]];
-	[listOfRates addObject:[[ExchangeRate alloc] initWithHome:cnyCurrency foreign:jpyCurrency]];
-	[listOfRates addObject:[[ExchangeRate alloc] initWithHome:cnyCurrency foreign:gbpCurrency]];
-	[listOfRates addObject:[[ExchangeRate alloc] initWithHome:usdCurrency foreign:eurCurrency]];
-	[listOfRates addObject:[[ExchangeRate alloc] initWithHome:usdCurrency foreign:jpyCurrency]];
-	[listOfRates addObject:[[ExchangeRate alloc] initWithHome:usdCurrency foreign:gbpCurrency]];
-*/
-	//[listOfRates addObject:[[ExchangeRate alloc] initWithHome:cnyCurrency foreign:usdCurrency]];
+	
+	listOfCurrency = [Currency createCurrency];
 	
 	self.homePickerView.delegate = self;
 	self.homePickerView.dataSource = self;
 	[self.homePickerView selectRow:0 inComponent:0 animated:NO];
-	[self.homePickerView selectRow:1 inComponent:0 animated:NO];
+	/*[self.homePickerView selectRow:1 inComponent:0 animated:NO];
 	[self.homePickerView selectRow:2 inComponent:0 animated:NO];
 	[self.homePickerView selectRow:3 inComponent:0 animated:NO];
-	[self.homePickerView selectRow:4 inComponent:0 animated:NO];
+	[self.homePickerView selectRow:4 inComponent:0 animated:NO];*/
 	
 	self.foreignPickerView.delegate = self;
 	self.foreignPickerView.dataSource = self;
 	[self.foreignPickerView selectRow:0 inComponent:0 animated:NO];
-	[self.foreignPickerView selectRow:1 inComponent:0 animated:NO];
+	/*[self.foreignPickerView selectRow:1 inComponent:0 animated:NO];
 	[self.foreignPickerView selectRow:2 inComponent:0 animated:NO];
 	[self.foreignPickerView selectRow:3 inComponent:0 animated:NO];
-	[self.foreignPickerView selectRow:4 inComponent:0 animated:NO];
-	
-/*	for (int i=0;i<5;i++) {
-		ExchangeRate* tmpRate = [listOfRates objectAtIndex:i];
-		[tmpRate updateRate];
-	}
-*/
+	[self.foreignPickerView selectRow:4 inComponent:0 animated:NO];*/
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -79,14 +52,6 @@ numberOfRowsInComponent:(NSInteger)component  {
 - (NSString *)pickerView:(UIPickerView *)pickerView
 			 titleForRow:(NSInteger)row
 			forComponent:(NSInteger)component {
-	//return ((Currency)[listOfRates objectAtIndex:row]).name;
-/*	if (row == 0) return @"Chinese Yuan";
-	if (row == 1) return @"United States Dollar";
-	if (row == 2) return @"Euro";
-	if (row == 3) return @"Japanese Yen";
-	if (row == 4) return @"Pound Sterling";
-	else return @"";*/
-	
 	Currency* tmp = [listOfCurrency objectAtIndex:row];
 	return tmp.name;
 }
@@ -106,6 +71,16 @@ numberOfRowsInComponent:(NSInteger)component  {
 	[currentExchangeRate updateRate];
 	
 	self.foreignCurrency.text = [pickerForeignCurrency format:@([currentExchangeRate exchangeToForeign:@(self.homeCurrency.text.floatValue)].floatValue)];
-	//self.foreignCurrency.text = [tmp format: @([[listOfRates objectAtIndex:[self.foreignPickerView selectedRowInComponent:0]] exchangeToForeign:@(self.homeCurrency.text.floatValue)].floatValue) ];
+}
+
+- (IBAction)switchButton:(id)sender {
+	NSString* tmp = self.foreignCurrency.text;
+	self.foreignCurrency.text = self.homeCurrency.text;
+	self.homeCurrency.text = tmp;
+	
+	NSInteger tmpInt = [self.homePickerView selectedRowInComponent:0];
+	[self.homePickerView selectRow:[self.foreignPickerView selectedRowInComponent:0] inComponent:0 animated:NO];
+	[self.foreignPickerView selectRow: tmpInt inComponent:0 animated:NO];
+	[self convertButton:sender];
 }
 @end

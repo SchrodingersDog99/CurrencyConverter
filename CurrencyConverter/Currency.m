@@ -35,6 +35,26 @@
 	return [NSString stringWithFormat:@"%@", quantity];
 }
 
+
++(NSMutableArray*) createCurrency
+{
+	Currency* usdCurrency = [[Currency alloc] initWithName:@"United States Dollar" alphaCode:@"USD" symbol:@"$" decimalPlaces:@(2)];
+	Currency* cnyCurrency = [[Currency alloc] initWithName:@"Chinese Yuan" alphaCode:@"CNY" symbol:@"¥" decimalPlaces:@(2)];
+	Currency* eurCurrency = [[Currency alloc] initWithName:@"Euro" alphaCode:@"EUR" symbol:@"€" decimalPlaces:@(2)];
+	Currency* jpyCurrency = [[Currency alloc] initWithName:@"Japanese Yen" alphaCode:@"JPY" symbol:@"¥" decimalPlaces:@(0)];
+	Currency* gbpCurrency = [[Currency alloc] initWithName:@"Pound Sterling" alphaCode:@"GBP" symbol:@"£" decimalPlaces:@(2)];
+	
+	NSMutableArray* listOfCurrency = [[NSMutableArray alloc]init];
+	listOfCurrency = [[NSMutableArray alloc] init];
+	[listOfCurrency addObject:cnyCurrency];
+	[listOfCurrency addObject:usdCurrency];
+	[listOfCurrency addObject:eurCurrency];
+	[listOfCurrency addObject:jpyCurrency];
+	[listOfCurrency addObject:gbpCurrency];
+	
+	return listOfCurrency;
+}
+
 @end
 
 
