@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExchangeRate.h"
+#import "Currency.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextField *homeCurrency;
 
+@property (weak, nonatomic) IBOutlet UIPickerView *homePickerView;
 @property (weak, nonatomic) IBOutlet UITextField *foreignCurrency;
+@property (weak, nonatomic) IBOutlet UIPickerView *foreignPickerView;
 
 - (IBAction)convertButton:(id)sender;
 

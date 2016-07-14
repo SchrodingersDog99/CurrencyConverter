@@ -36,14 +36,19 @@
 	NSLog(@"dispatching %@", [self description]);
 	NSURLSessionTask* task = [delegateFreeSession dataTaskWithURL: [NSURL URLWithString: urlString]
 												completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-													NSLog(@"Got response %@ with error %@.\n", response, error);
+													//NSLog(@"Got response %@ with error %@.\n", response, error);
 													id obj = [NSJSONSerialization JSONObjectWithData: data
 																							 options: 0
 																							   error: nil];
 													if( [obj isKindOfClass: [NSDictionary class]] ){
 														NSDictionary *dict = (NSDictionary*)obj;
-														NSString* tmp = [[[dict objectForKey:@"results"] objectForKey:@"rate"] objectForKey:@"rate"];
+														NSDictionary *dictQuery = (NSDictionary*) [dict objectForKey:@"query"];
+														NSDictionary *dictResult = (NSDictionary*) [dictQuery objectForKey:@"results"];
+														NSDictionary *dictRate = (NSDictionary*) [dictResult objectForKey:@"rate"];
+														NSString* tmp = (NSString*)[dictRate objectForKey:@"Rate"];
 														self.rate = @(tmp.floatValue);
+														//NSLog(@"%@", [dict objectForKey:@"results"]);
+														NSLog(@"%@", tmp);
 													}else{
 														NSLog(@"Not a dictionary.");
 														exit(1);
@@ -63,7 +68,6 @@
 	return [self.foreign format: @(value.floatValue / self.rate.floatValue)];
 }
 
-
 -(void) reverse {
 	self.rate = @(1.0 / (self.rate).floatValue);
 	Currency* tmp = self.home;
@@ -72,11 +76,11 @@
 }
 
 -(NSString*) name {
-	return [home.name stringByAppendingString:foreign.name];
+	return [home.alphaCode stringByAppendingString:foreign.alphaCode];
 }
 
 -(NSString*) description {
-	return [NSString stringWithFormat:@"%@ to %@ at rate:%@",self.home, self.foreign, self.rate];
+	return [NSString stringWithFormat:@"%@ to %@ at rate:%@",self.home.alphaCode, self.foreign.alphaCode, self.rate];
 }
 
 

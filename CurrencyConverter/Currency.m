@@ -31,7 +31,8 @@
 }
 
 -(NSString*) format: (NSNumber*) quantity {
-	NSString*
+//	NSString*
+	return [NSString stringWithFormat:@"%@", quantity];
 }
 
 @end

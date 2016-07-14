@@ -63,7 +63,9 @@
                     </view>
                     <connections>
                         <outlet property="foreignCurrency" destination="Q0U-1c-mAc" id="iqz-eS-5DN"/>
+                        <outlet property="foreignPickerView" destination="jMY-e1-byt" id="YBq-1x-4r9"/>
                         <outlet property="homeCurrency" destination="tzd-gg-VBK" id="7rb-RP-tfc"/>
+                        <outlet property="homePickerView" destination="Vuz-mB-lFU" id="c7y-CJ-f6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
