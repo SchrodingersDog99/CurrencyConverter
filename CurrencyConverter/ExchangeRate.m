@@ -57,6 +57,7 @@
 												}];
 	[task resume];
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+	if (self.rate.floatValue == 0) return NO;
 
 	return YES;
 }

@@ -20,13 +20,14 @@
 				   symbol: (NSString*) aSymbol
 			decimalPlaces: (NSNumber*) places
 {
-	Currency* aCurrency = [[Currency alloc] init];
-	aCurrency.name = aName;
-	aCurrency.alphaCode = aCode;
-	aCurrency.symbol = aSymbol;
-	aCurrency.decimalPlaces = places;
-	
-	return aCurrency;
+	self = [super init];
+	if (self) {
+		self.name = aName;
+		self.alphaCode = aCode;
+		self.symbol = aSymbol;
+		self.decimalPlaces = places;
+	}
+	return self;
 }
 
 -(NSString*) format: (NSNumber*) quantity {
