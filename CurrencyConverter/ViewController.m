@@ -52,6 +52,14 @@ numberOfRowsInComponent:(NSInteger)component  {
 - (NSString *)pickerView:(UIPickerView *)pickerView
 			 titleForRow:(NSInteger)row
 			forComponent:(NSInteger)component {
+	//NSLog(@"%ld", row);
+	if (pickerView == self.homePickerView) {
+		self.homeSymbol.text = ((Currency*)[listOfCurrency objectAtIndex:[self.homePickerView selectedRowInComponent:0]]).symbol;
+	}
+	if (pickerView == self.foreignPickerView) {
+		self.foreignSymbol.text = ((Currency*)[listOfCurrency objectAtIndex:[self.foreignPickerView selectedRowInComponent:0]]).symbol;
+		NSLog(@"%ld", row);
+	}
 	Currency* tmp = [listOfCurrency objectAtIndex:row];
 	return tmp.name;
 }
@@ -62,6 +70,10 @@ numberOfRowsInComponent:(NSInteger)component  {
 }
 
 - (IBAction)convertButton:(id)sender {
+	[self.foreignCurrency resignFirstResponder];
+	[self.homeCurrency resignFirstResponder];
+
+	
 	NSInteger homeIndex = [self.homePickerView selectedRowInComponent:0];
 	NSInteger foreignIndex = [self.foreignPickerView selectedRowInComponent:0];
 	Currency* pickerHomeCurrency = [listOfCurrency objectAtIndex:homeIndex];
@@ -69,11 +81,15 @@ numberOfRowsInComponent:(NSInteger)component  {
 	
 	ExchangeRate* currentExchangeRate = [[ExchangeRate alloc] initWithHome:pickerHomeCurrency foreign:pickerForeignCurrency];
 	[currentExchangeRate updateRate];
+
 	
-	self.foreignCurrency.text = [pickerForeignCurrency format:@([currentExchangeRate exchangeToForeign:@(self.homeCurrency.text.floatValue)].floatValue)];
+	self.foreignCurrency.text = [currentExchangeRate exchangeToForeign:@(self.homeCurrency.text.floatValue)];
 }
 
 - (IBAction)switchButton:(id)sender {
+	[self.foreignCurrency resignFirstResponder];
+	[self.homeCurrency resignFirstResponder];
+
 	NSString* tmp = self.foreignCurrency.text;
 	self.foreignCurrency.text = self.homeCurrency.text;
 	self.homeCurrency.text = tmp;
@@ -83,4 +99,11 @@ numberOfRowsInComponent:(NSInteger)component  {
 	[self.foreignPickerView selectRow: tmpInt inComponent:0 animated:NO];
 	[self convertButton:sender];
 }
+
+- (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+	[self.foreignCurrency resignFirstResponder];
+	[self.homeCurrency resignFirstResponder];
+}
+
 @end

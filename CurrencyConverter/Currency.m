@@ -13,7 +13,7 @@
 @synthesize name;
 @synthesize alphaCode;
 @synthesize symbol;
-@synthesize formatter;
+@synthesize decimalPlaces;
 
 -(Currency*) initWithName: (NSString*) aName
 				alphaCode: (NSString*) aCode
@@ -24,21 +24,25 @@
 	aCurrency.name = aName;
 	aCurrency.alphaCode = aCode;
 	aCurrency.symbol = aSymbol;
-	aCurrency.formatter = [[NSNumberFormatter alloc] init];
-	
+	aCurrency.decimalPlaces = places;
 	
 	return aCurrency;
 }
 
 -(NSString*) format: (NSNumber*) quantity {
-//	NSString*
-	return [NSString stringWithFormat:@"%@", quantity];
+	NSLog(@"%@", quantity);
+	if (self.decimalPlaces.floatValue == 0)
+		//return [self.symbol stringByAppendingString:[NSString stringWithFormat:@"%0.0f", quantity.floatValue]];
+		return [NSString stringWithFormat:@"%0.0f", quantity.floatValue];
+	else if (self.decimalPlaces.floatValue == 2)
+		return [NSString stringWithFormat:@"%0.2f", quantity.floatValue];
+	else {return nil;}
 }
 
 
 +(NSMutableArray*) createCurrency
 {
-	Currency* usdCurrency = [[Currency alloc] initWithName:@"United States Dollar" alphaCode:@"USD" symbol:@"$" decimalPlaces:@(2)];
+	Currency* usdCurrency = [[Currency alloc] initWithName:@"US Dollar" alphaCode:@"USD" symbol:@"$" decimalPlaces:@(2)];
 	Currency* cnyCurrency = [[Currency alloc] initWithName:@"Chinese Yuan" alphaCode:@"CNY" symbol:@"¥" decimalPlaces:@(2)];
 	Currency* eurCurrency = [[Currency alloc] initWithName:@"Euro" alphaCode:@"EUR" symbol:@"€" decimalPlaces:@(2)];
 	Currency* jpyCurrency = [[Currency alloc] initWithName:@"Japanese Yen" alphaCode:@"JPY" symbol:@"¥" decimalPlaces:@(0)];

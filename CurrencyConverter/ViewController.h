@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *homePickerView;
 @property (weak, nonatomic) IBOutlet UITextField *foreignCurrency;
 @property (weak, nonatomic) IBOutlet UIPickerView *foreignPickerView;
+@property (weak, nonatomic) IBOutlet UILabel *homeSymbol;
+@property (weak, nonatomic) IBOutlet UILabel *foreignSymbol;
 
 - (IBAction)convertButton:(id)sender;
 - (IBAction)switchButton:(id)sender;
