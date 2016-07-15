@@ -36,6 +36,8 @@
 		return [NSString stringWithFormat:@"%0.0f", quantity.floatValue];
 	else if (self.decimalPlaces.floatValue == 2)
 		return [NSString stringWithFormat:@"%0.2f", quantity.floatValue];
+	else if (self.decimalPlaces.floatValue == 1)
+		return [NSString stringWithFormat:@"%0.1f", quantity.floatValue];
 	else {return nil;}
 }
 

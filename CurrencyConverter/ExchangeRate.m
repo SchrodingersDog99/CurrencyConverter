@@ -42,6 +42,7 @@
 																							   error: nil];
 													if( [obj isKindOfClass: [NSDictionary class]] ){
 														NSDictionary *dict = (NSDictionary*)obj;
+														NSLog(@"%@", dict);
 														NSDictionary *dictQuery = (NSDictionary*) [dict objectForKey:@"query"];
 														NSDictionary *dictResult = (NSDictionary*) [dictQuery objectForKey:@"results"];
 														NSDictionary *dictRate = (NSDictionary*) [dictResult objectForKey:@"rate"];
@@ -80,7 +81,7 @@
 }
 
 -(NSString*) description {
-	return [NSString stringWithFormat:@"%@ to %@ at rate:%@",self.home.alphaCode, self.foreign.alphaCode, self.rate];
+	return [NSString stringWithFormat:@"%@ to %@ at rate:%0.4f",self.home.name, self.foreign.name, self.rate.doubleValue];
 }
 
 

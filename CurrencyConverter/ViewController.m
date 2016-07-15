@@ -58,7 +58,6 @@ numberOfRowsInComponent:(NSInteger)component  {
 	}
 	if (pickerView == self.foreignPickerView) {
 		self.foreignSymbol.text = ((Currency*)[listOfCurrency objectAtIndex:[self.foreignPickerView selectedRowInComponent:0]]).symbol;
-		NSLog(@"%ld", row);
 	}
 	Currency* tmp = [listOfCurrency objectAtIndex:row];
 	return tmp.name;
@@ -84,6 +83,9 @@ numberOfRowsInComponent:(NSInteger)component  {
 
 	
 	self.foreignCurrency.text = [currentExchangeRate exchangeToForeign:@(self.homeCurrency.text.floatValue)];
+	self.informationLabel.text = [currentExchangeRate description];
+	[currentExchangeRate reverse];
+	self.informationLabel2.text = [currentExchangeRate description];
 }
 
 - (IBAction)switchButton:(id)sender {

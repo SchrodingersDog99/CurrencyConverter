@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *foreignPickerView;
 @property (weak, nonatomic) IBOutlet UILabel *homeSymbol;
 @property (weak, nonatomic) IBOutlet UILabel *foreignSymbol;
+@property (weak, nonatomic) IBOutlet UILabel *informationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *informationLabel2;
 
 - (IBAction)convertButton:(id)sender;
 - (IBAction)switchButton:(id)sender;
